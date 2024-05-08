@@ -20,6 +20,7 @@
         <version.jmoordbencripter>2.0</version.jmoordbencripter>
         <version.jmoordb-core-annotations>1.5</version.jmoordb-core-annotations>
                 <final.name>vcai</final.name>
+                <primefaces.version>13.0.0</primefaces.version>
     </properties>
     
     <dependencyManagement>
@@ -128,6 +129,22 @@
             <artifactId>jakarta.mail</artifactId>
             <version>2.0.1</version>
         </dependency>
+        
+        <!--
+            JakartaFaces
+    -->
+    <dependency>
+<groupId>jakarta.faces</groupId>
+<artifactId>jakarta.faces-api</artifactId>
+<version>4.0.1</version>
+<scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>org.primefaces</groupId>
+<artifactId>primefaces</artifactId>
+<version>${primefaces.version}</version>
+<classifier>jakarta</classifier>
+</dependency>
     </dependencies>
 
     <build>

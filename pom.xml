@@ -19,6 +19,7 @@
         <version.jmoordbutilfaces>3.1</version.jmoordbutilfaces>
         <version.jmoordbencripter>2.0</version.jmoordbencripter>
         <version.jmoordb-core-annotations>1.5</version.jmoordb-core-annotations>
+                <final.name>vcai</final.name>
     </properties>
     
     <dependencyManagement>
@@ -130,6 +131,7 @@
     </dependencies>
 
     <build>
+          <finalName>${final.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

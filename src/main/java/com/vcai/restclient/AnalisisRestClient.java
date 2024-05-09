@@ -88,7 +88,7 @@ public interface AnalisisRestClient {
 
      
 // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Analisis findByAnalisisname">
+    // <editor-fold defaultstate="collapsed" desc="Analisis findByNhc">
 
     @GET
    @Path("nhc")

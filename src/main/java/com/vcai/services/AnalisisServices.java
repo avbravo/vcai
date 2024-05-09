@@ -17,7 +17,7 @@ import org.bson.conversions.Bson;
 public interface AnalisisServices {
         public List<Analisis> findAll();
         public Optional<Analisis> findByIdanalisis( Long idanalisis);
-        public List<Analisis> findByAnalisis(String analisis);
+       public Optional<Analisis> findByNhc(String nhc) ;
   
     public Optional<Analisis> save( Analisis analisis);
 
@@ -34,12 +34,12 @@ public interface AnalisisServices {
     public List<Analisis> lookup( Bson filter, Document sort, Integer page, Integer size);
     public Long count(Bson filter, Document sort, Integer page, Integer size);
     
-    
-     public Long countLikeByAnalisis(String analisis);
-    
-    // <editor-fold defaultstate="collapsed" desc="List<Analisis> likeByAnalisis( String analisisview)">
-    public List<Analisis> likeByAnalisis( String analisis);
-    // </editor-fold>
-    
-      public Boolean existsAnalisis(Analisis analisis);
+//    
+//     public Long countLikeByAnalisis(String analisis);
+//    
+//    // <editor-fold defaultstate="collapsed" desc="List<Analisis> likeByAnalisis( String analisisview)">
+//    public List<Analisis> likeByAnalisis( String analisis);
+//    // </editor-fold>
+//    
+//      public Boolean existsAnalisis(Analisis analisis);
 }

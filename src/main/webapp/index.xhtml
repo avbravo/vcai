@@ -57,11 +57,9 @@
 
 
                 <p:growl/>
-                <p:dataTable var="item" value="#{analisisFaces.analisisList}"   paginator="true" rows="25"
-                             id="datatable"
-                             >
+          
 
-                    <p:dataTable style="border-style: none" var="item" value="#{analisisFaces.iconoLazyDataModel}"
+                    <p:dataTable style="border-style: none" var="item" value="#{analisisFaces.analisisLazyDataModel}"
                                  binding="#{analisisFaces.dataTable}"
                                  id="dataTable"
                                  widgetVar="widgetVardataTable"
@@ -77,7 +75,7 @@
                                  >
                         <f:facet name="header">
                             <p:outputLabel value="Listado de Analisis #{analisisFaces.analisisList.size()}"/>
-                            <p:commandButton value="Load" action="#{analisisFaces.findAll()}" update=":form:datatable"/>
+                            <p:commandButton value="Load" action="#{analisisFaces.findAll()}" update=":form:dataTable"/>
 
                         </f:facet>
 

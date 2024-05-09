@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lombok.Data;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.eclipse.microprofile.config.Config;
@@ -41,6 +42,7 @@ import org.primefaces.model.SortMeta;
  */
 @Named
 @ViewScoped
+@Data
 public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPaginator, AnalisisFacesServices , FacesServices{
 
     private static final long serialVersionUID = 1L;
@@ -93,7 +95,7 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
     AnalisisServices analisisServices;
 // </editor-fold>
    
-    // <editor-fold defaultstate="collapsed" desc="methods()">
+    // <editor-fold defaultstate="collapsed" desc="fields()">
         private Analisis analisisSelected = new Analisis();
 // </editor-fold>
     

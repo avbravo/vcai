@@ -17,3 +17,9 @@ Vishnu_Ramana Can you modify the aggregation operation to include the “allowDi
 
 
  Can you modify the aggregation operation to include the “allowDiskUse:true” option when invoking the aggregation. in java driver
+
+solución 
+
+allowDiskUse:true” option
+
+https://www.mongodb.com/community/forums/t/java-driver-allowdiskuse-true/218985

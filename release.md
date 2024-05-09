@@ -23,3 +23,6 @@ solución
 allowDiskUse:true” option
 
 https://www.mongodb.com/community/forums/t/java-driver-allowdiskuse-true/218985
+
+
+https://stackoverflow.com/questions/31283479/mongodb-java-driver-3-x-how-to-pass-allowdiskuse-true-to-aggregate-method

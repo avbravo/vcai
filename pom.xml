@@ -19,8 +19,8 @@
         <version.jmoordbutilfaces>3.1</version.jmoordbutilfaces>
         <version.jmoordbencripter>2.0</version.jmoordbencripter>
         <version.jmoordb-core-annotations>1.5</version.jmoordb-core-annotations>
-                <final.name>vcai</final.name>
-                <primefaces.version>13.0.0</primefaces.version>
+        <final.name>vcai</final.name>
+        <primefaces.version>13.0.0</primefaces.version>
     </properties>
     
     <dependencyManagement>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-                    <scope>provided</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
@@ -90,13 +90,13 @@
         </dependency>
         
         
-          <dependency>
+        <dependency>
             <groupId>com.github.avbravo</groupId>
             <artifactId>jmoordb-core-annotations</artifactId>
             <version>${version.jmoordb-core-annotations}</version>
         </dependency>
 
- <dependency>
+        <dependency>
             <groupId>com.github.avbravo</groupId>
             <artifactId>jmoordbutilfaces</artifactId>
             <version>${version.jmoordbutilfaces}</version>
@@ -131,10 +131,10 @@
         </dependency>
         
         <!--
-            JakartaFaces
-    -->
+                JakartaFaces
+        -->
     
-      <dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
@@ -142,22 +142,28 @@
         </dependency>
         
         
-    <dependency>
-<groupId>jakarta.faces</groupId>
-<artifactId>jakarta.faces-api</artifactId>
-<version>4.0.1</version>
-<scope>provided</scope>
-</dependency>
-<dependency>
-    <groupId>org.primefaces</groupId>
-<artifactId>primefaces</artifactId>
-<version>${primefaces.version}</version>
-<classifier>jakarta</classifier>
-</dependency>
+        <dependency>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces.version}</version>
+            <classifier>jakarta</classifier>
+        </dependency>
+        
+<!--        <dependency>
+    <groupId>org.webjars.npm</groupId>
+    <artifactId>tailwindcss</artifactId>
+    <version>3.4.1</version>
+</dependency>-->
     </dependencies>
 
     <build>
-          <finalName>${final.name}</finalName>
+        <finalName>${final.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -185,7 +191,7 @@
                             <key>--autoBindHttp</key>
                         </option>
                         
-                          <option>
+                        <option>
                             <key>--port</key>
                             <value>8080</value>
                         </option>
@@ -196,7 +202,7 @@
                         <option>
                             <key>--logo</key>
                         </option>
-                           <option>
+                        <option>
                             <key>--deploy</key>
                             <value>${project.build.directory}/${project.build.finalName}</value>
                         </option>
@@ -296,7 +302,7 @@
             </snapshots>
         </repository>
         
-         <repository>
+        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>

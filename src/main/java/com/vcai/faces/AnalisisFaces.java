@@ -5,6 +5,7 @@
 package com.vcai.faces;
 
 import com.avbravo.jmoordbutils.FacesUtil;
+import com.avbravo.jmoordbutils.JmoordbCoreDateUtil;
 import com.avbravo.jmoordbutils.JmoordbCoreXHTMLUtil;
 import com.avbravo.jmoordbutils.paginator.IPaginator;
 import com.avbravo.jmoordbutils.paginator.Paginator;
@@ -97,6 +98,8 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
    
     // <editor-fold defaultstate="collapsed" desc="fields()">
         private Analisis analisisSelected = new Analisis();
+        
+            List<Analisis> analisisList = new ArrayList<>();
 // </editor-fold>
     
    // <editor-fold defaultstate="collapsed" desc="selected For Dialog()">
@@ -111,22 +114,16 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
 
     // </editor-fold>
     
-    List<Analisis> analisisList = new ArrayList<>();
 
-    public List<Analisis> getAnalisisList() {
-        return analisisList;
-    }
 
-    public void setAnalisisList(List<Analisis> analisisList) {
-        this.analisisList = analisisList;
-    }
+
 
     @PostConstruct
     public void init() {
         try {
-
+prepareNew();
             findAll();
-
+           
             this.analisisLazyDataModel = new LazyDataModel<Analisis>() {
                 @Override
                 public List<Analisis> load(int offset, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
@@ -226,6 +223,20 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
 
     }
 
+       // <editor-fold defaultstate="collapsed" desc="String prepareNew()">
+    public String prepareNew(){
+        try {
+            analisisSelected = new Analisis();
+            analisisSelected.setFecha(JmoordbCoreDateUtil.fechaHoraActual());
+
+        } catch (Exception e) {
+             FacesUtil.errorMessage(FacesUtil.nameOfClassAndMethod() + " " + e.getLocalizedMessage());
+        }
+        return "";
+    }
+    
+    
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="String findAll()">
     public String findAll() {
         try {

@@ -7,191 +7,216 @@
       xmlns:f="jakarta.faces.core">
     <h:head>
         <title>MicroProfile RestClient</title>
-<!--        <style>
-            body {
-                background-image: linear-gradient(rgba(0,44,62), rgba(0,44,62,.8), rgba(0,44,62));
-                color: #fff;
-            }
-            a {
-                font-weight: bold;
-                color: white;
-            }
-        </style>-->
-      
+        <!--        <style>
+                    body {
+                        background-image: linear-gradient(rgba(0,44,62), rgba(0,44,62,.8), rgba(0,44,62));
+                        color: #fff;
+                    }
+                    a {
+                        font-weight: bold;
+                        color: white;
+                    }
+                </style>-->
+<style>
+    p {
+        line-height: 1.5;
+        margin: 1;
+    }
+</style>
     </h:head>
     <h:body>
-          <!--<script src="https://cdn.tailwindcss.com"></script>-->
+        <!--<script src="https://cdn.tailwindcss.com"></script>-->
         <f:view contentType="text/html">
             <p>
                 <!--<a href="https://jakarta.ee"><img width="10%" src="images/jakartaee_logo.jpg"/></a>-->
             </p>
+
+
+
+
             <h:form id="form" prependId="false">
-<!--                <div class="my-4 md:w-1/3 rounded">
-                    <div class="flex items-start rounded-lg shadow-lg bg-white p-4">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-blue-200 bg-blue-100">
-                          
-                        </div>
 
-                        <div class="ml-4">
-                            <h2 class="font-semibold text-md">574 Messages</h2>
-                            <p class="mt-2 text-sm text-gray-500">Last opened 4 days ago</p>
-                        </div>
-                    </div>
-                </div>
-
-
-<div>
-  <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
-  <div class="relative mt-2 rounded-md shadow-sm">
-    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-      <span class="text-gray-500 sm:text-sm">$</span>
-    </div>
-    <input type="text" name="price" id="price" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00"/>
-    <div class="absolute inset-y-0 right-0 flex items-center">
-      <label for="currency" class="sr-only">Currency</label>
-      <select id="currency" name="currency" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
-        <option>USD</option>
-        <option>CAD</option>
-        <option>EUR</option>
-      </select>
-    </div>
-  </div>
-</div>-->
-
-                <h1>IA Vaginal</h1>
-                <p>
-                    Proyecto IA Vaginal - Imágenes
-                </p>
-                <p>
-                    <a href="https://www.payara.fish/"><img width="20%" src="images/payara-fish-logo.svg" alt="Payara Logo"/></a>
-                </p>
-
-
-
-                <p:growl/>
 
                 
-                    <div class="surface-section">
-                <div class="grid">
-                    <div class="col-12 lg:col-2">
-                        <div class="text-900 font-medium text-xl mb-3">Profile</div>
-                        <p class="m-0 p-0 text-600 line-height-3 mr-3">Odio euismod lacinia at quis risus sed vulputate odio.</p>
-                    </div>
-                    <div class="col-12 lg:col-10">
-                        <div class="grid formgrid ui-fluid">
-                            <div class="field mb-4 col-12">
-                                <label for="nickname1" class="font-medium">Fecha</label>
-                                <p:datePicker id="fecha"/>
-                            </div>
-                            <div class="field mb-4 col-12">
-                                <label for="nickname1" class="font-medium">NHC*</label>
-                                <p:inputText id="nhc"/>
-                            </div>
-                            <div class="field mb-4 col-12">
-                                <label for="nickname1" class="font-medium">Número de muestra*</label>
-                                <p:inputText id="numeromuestra"/>
-                            </div>
-                            <div class="field mb-4 col-12">
-                                <label class="font-medium">Avatar</label>
-                                <div class="flex align-items-center">
-                                    <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
-                                                    library="primeblocks-app" alt="Image"
-                                                    styleClass="mr-4"/>
-                                    <p:fileUpload mode="simple" skinSimple="true" label="Upload Image" auto="true"
-                                                  process="@this"/>
-                                </div>
-                            </div>
-                            <div class="field mb-4 col-12">
-                                <label for="bio1" class="font-medium">Bio</label>
-                                <p:inputTextarea id="bio1" rows="5" autoResize="true"/>
-                            </div>
-                            <div class="field mb-4 col-12 md:col-6">
-                                <label for="email1" class="font-medium">Email</label>
-                                <p:inputText id="email1"/>
-                            </div>
-                            <div class="field mb-4 col-12 md:col-6">
-                                <label class="font-medium">Country</label>
-                                <p:selectOneMenu filter="true" filterMatchMode="startsWith">
-                                    <f:selectItem itemLabel="Select a Country" itemValue=""/>
-                                    <f:selectItem itemLabel="Australia" itemValue="Australia"/>
-                                    <f:selectItem itemLabel="Brazil" itemValue="Brazil"/>
-                                    <f:selectItem itemLabel="China" itemValue="China"/>
-                                    <f:selectItem itemLabel="Egypt" itemValue="Egypt"/>
-                                    <f:selectItem itemLabel="France" itemValue="France"/>
-                                    <f:selectItem itemLabel="Germany" itemValue="Germany"/>
-                                    <f:selectItem itemLabel="India" itemValue="India"/>
-                                    <f:selectItem itemLabel="Japan" itemValue="Japan"/>
-                                    <f:selectItem itemLabel="Spain" itemValue="Spain"/>
-                                    <f:selectItem itemLabel="United States" itemValue="United States"/>
-                                </p:selectOneMenu>
-                            </div>
-                            <div class="field mb-4 col-12 md:col-6">
-                                <label for="city1" class="font-medium">City</label>
-                                <p:inputText id="city1"/>
-                            </div>
-                            <div class="field mb-4 col-12 md:col-6">
-                                <label for="state1" class="font-medium">State</label>
-                                <p:inputText id="state1"/>
-                            </div>
-                            <div class="field mb-4 col-12">
-                                <label for="website1" class="font-medium">Website</label>
-                                <div class="ui-inputgroup">
-                                    <span class="ui-inputgroup-addon">www</span>
-                                    <p:inputText id="website1"/>
-                                </div>
-                            </div>
-                            <div class="field mb-4 col-12">
-                                <label class="font-medium">Privacy</label>
-                                <div class="flex align-items-center">
-                                    <p:selectBooleanCheckbox/>
-                                    <span class="ml-2">Share my data with contacts</span>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <p:commandButton type="button" value="Save Changes" styleClass="w-auto mt-3"/>
-                            </div>
-                        </div>
-                    </div>
+                  <!--<p:card style="width: 75rem; margin-bottom: 2em">-->
+                  <p:card style="margin-bottom: 2em">
+                    <h1>IA Vaginal</h1>
+                    <p>
+                        Proyecto IA Vaginal - Imágenes
+                    </p>
+                    <p>
+                        <a href="https://www.payara.fish/"><img width="5%" src="images/payara-fish-logo.svg" alt="Payara Logo"/></a>
+                    </p>
+
+
+
+
+                    <p:growl/>
+
+ <div class="card">
+        <h5>Addons</h5>
+        <div class="grid ui-fluid">
+            <div class="col-12 md:col-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                    <p:inputText placeholder="Username"/>
                 </div>
             </div>
 
-                <p:dataTable style="border-style: none" var="item" value="#{analisisFaces.analisisLazyDataModel}"
-                             binding="#{analisisFaces.dataTable}"
-                             id="dataTable"
-                             widgetVar="widgetVardataTable"
-                             lazy="true"
-                             paginator="true"
-                             rows="#{analisisFaces.rowPageSmall.get()}"
-                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                             paginatorPosition="both"
-                             resizableColumns="true" liveResize="true"
-                             rowKey="#{item.idanalisis}"
-                             selection="#{analisisFaces.analisisSelected}"
-                             rowSelectMode="add"
-                             >
-                    <f:facet name="header">
-                        <p:outputLabel value="Listado de Analisis #{analisisFaces.analisisList.size()}"/>
-                        <p:commandButton value="Load" action="#{analisisFaces.findAll()}" update=":form:dataTable"/>
+            <div class="col-12 md:col-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon">$</div>
+                    <p:inputText placeholder="Price"/>
+                    <div class="ui-inputgroup-addon">.00</div>
+                </div>
+            </div>
 
-                    </f:facet>
+            <div class="col-12 md:col-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon">www</div>
+                    <p:inputText placeholder="Website"/>
+                </div>
+            </div>
+        </div>
+        </div>
 
-                    <p:column headerText="idanalisis">
-                        <p:outputLabel value="#{item.idanalisis}"/>
-                    </p:column>
 
-                    <p:column headerText="nhc">
-                        <p:outputLabel value="#{item.nhc}"/>
-                    </p:column>
+                    <div class="surface-section">
+                        <div class="grid">
 
-                    <p:column headerText="name">
-                        <p:outputLabel value="#{item.especialista.name}"/>
-                    </p:column>
+                            <div class="col-12 lg:col-12">
+                                <div class="grid formgrid ui-fluid">
+                                    <div class="field mb-4 col-6">
+                                
+                                      <i class="pi pi-calendar"/>  <p:outputLabel value="Fecha"/>
 
-                    <p:column headerText="cultivoorina">
-                        <p:outputLabel value="#{item.cultivoorina}"/>
-                    </p:column>
+                                        <p:datePicker value="#{analisisFaces.analisisSelected.fecha}" placeholder="Fecha"
+                                                      pattern="dd/MM/yyyy HH:mm a"
+                                                      timeInput="true"
+                                                      hourFormat="12"
+                                                      showTime="true"
+                                                      locale="es"
+                                                      />
+                                    </div>
+                                    <div class="field mb-4 col-6">
+                                        <i class="pi pi-hashtag"/><p:outputLabel value="NHC*"/>
+                                        <p:inputText  value="#{analisisFaces.analisisSelected.nhc}" id="nhc"/>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                       <i class="pi pi-hashtag"/><p:outputLabel value="Número de muestra"/>
+                                        <p:inputText value="#{analisisFaces.analisisSelected.numeromuestra}" id="numeromuestra"/>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                       <i class="pi pi-hashtag"/><p:outputLabel value="Edad"/>
+                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="numeromuestra"/>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    <div class="field mb-4 col-12">
+                                        <label class="font-medium">Avatar</label>
+                                        <div class="flex align-items-center">
+                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
+                                                            library="primeblocks-app" alt="Image"
+                                                            styleClass="mr-4"/>
+                                            <p:fileUpload mode="simple" skinSimple="true" label="Upload Image" auto="true"
+                                                          process="@this"/>
+                                        </div>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <label for="bio1" class="font-medium">Bio</label>
+                                        <p:inputTextarea id="bio1" rows="5" autoResize="true"/>
+                                    </div>
+                                    <div class="field mb-4 col-12 md:col-6">
+                                        <label for="email1" class="font-medium">Email</label>
+                                        <p:inputText id="email1"/>
+                                    </div>
+                                    <div class="field mb-4 col-12 md:col-6">
+                                        <label class="font-medium">Country</label>
+                                        <p:selectOneMenu filter="true" filterMatchMode="startsWith">
+                                            <f:selectItem itemLabel="Select a Country" itemValue=""/>
+                                            <f:selectItem itemLabel="Australia" itemValue="Australia"/>
+                                            <f:selectItem itemLabel="Brazil" itemValue="Brazil"/>
+                                            <f:selectItem itemLabel="China" itemValue="China"/>
+                                            <f:selectItem itemLabel="Egypt" itemValue="Egypt"/>
+                                            <f:selectItem itemLabel="France" itemValue="France"/>
+                                            <f:selectItem itemLabel="Germany" itemValue="Germany"/>
+                                            <f:selectItem itemLabel="India" itemValue="India"/>
+                                            <f:selectItem itemLabel="Japan" itemValue="Japan"/>
+                                            <f:selectItem itemLabel="Spain" itemValue="Spain"/>
+                                            <f:selectItem itemLabel="United States" itemValue="United States"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="field mb-4 col-12 md:col-6">
+                                        <label for="city1" class="font-medium">City</label>
+                                        <p:inputText id="city1"/>
+                                    </div>
+                                    <div class="field mb-4 col-12 md:col-6">
+                                        <label for="state1" class="font-medium">State</label>
+                                        <p:inputText id="state1"/>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <label for="website1" class="font-medium">Website</label>
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon">www</span>
+                                            <p:inputText id="website1"/>
+                                        </div>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <label class="font-medium">Privacy</label>
+                                        <div class="flex align-items-center">
+                                            <p:selectBooleanCheckbox/>
+                                            <span class="ml-2">Share my data with contacts</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:commandButton type="button" value="Save Changes" styleClass="w-auto mt-3"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                </p:dataTable>
+                    <p:dataTable style="border-style: none" var="item" value="#{analisisFaces.analisisLazyDataModel}"
+                                 binding="#{analisisFaces.dataTable}"
+                                 id="dataTable"
+                                 widgetVar="widgetVardataTable"
+                                 lazy="true"
+                                 paginator="true"
+                                 rows="#{analisisFaces.rowPageSmall.get()}"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 paginatorPosition="both"
+                                 resizableColumns="true" liveResize="true"
+                                 rowKey="#{item.idanalisis}"
+                                 selection="#{analisisFaces.analisisSelected}"
+                                 rowSelectMode="add"
+                                 >
+                        <f:facet name="header">
+                            <p:outputLabel value="Listado de Analisis #{analisisFaces.analisisList.size()}"/>
+                            <p:commandButton value="Load" action="#{analisisFaces.findAll()}" update=":form:dataTable"/>
+
+                        </f:facet>
+
+                        <p:column headerText="idanalisis">
+                            <p:outputLabel value="#{item.idanalisis}"/>
+                        </p:column>
+
+                        <p:column headerText="nhc">
+                            <p:outputLabel value="#{item.nhc}"/>
+                        </p:column>
+
+                        <p:column headerText="name">
+                            <p:outputLabel value="#{item.especialista.name}"/>
+                        </p:column>
+
+                        <p:column headerText="cultivoorina">
+                            <p:outputLabel value="#{item.cultivoorina}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                  </p:card>
             </h:form>
         </f:view>
     </h:body>

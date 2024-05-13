@@ -9,10 +9,7 @@ import com.avbravo.jmoordbutils.JmoordbCoreDateUtil;
 import com.avbravo.jmoordbutils.JmoordbCoreXHTMLUtil;
 import com.avbravo.jmoordbutils.paginator.IPaginator;
 import com.avbravo.jmoordbutils.paginator.Paginator;
-import com.jmoordb.core.model.Pagination;
-import com.jmoordb.core.model.Sorted;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.ne;
 import com.vcai.faces.services.AnalisisFacesServices;
 import com.vcai.faces.services.FacesServices;
 import com.vcai.model.Analisis;
@@ -20,11 +17,13 @@ import com.vcai.model.Diagnostico;
 import com.vcai.model.Etiquetadoimagen;
 import com.vcai.model.Motivo;
 import com.vcai.model.Pcrits;
+import com.vcai.model.Resultadocultivo;
 import com.vcai.services.AnalisisServices;
 import com.vcai.services.DiagnosticoServices;
 import com.vcai.services.EtiquetadoimagenServices;
 import com.vcai.services.MotivoServices;
 import com.vcai.services.PcritsServices;
+import com.vcai.services.ResultadocultivoServices;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -35,19 +34,14 @@ import jakarta.inject.Provider;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import lombok.Data;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.primefaces.PrimeFaces;
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.SlideEndEvent;
-import org.primefaces.model.FilterMeta;
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortMeta;
 
 /**
  *
@@ -60,12 +54,7 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
 
     private static final long serialVersionUID = 1L;
 
-    // <editor-fold defaultstate="collapsed" desc="LazyDataModel">
-    private LazyDataModel<Analisis> analisisLazyDataModel;
-    private DataTable dataTable;
-    Integer totalRecords = 0;
-    private Boolean isRowPageSmall = Boolean.TRUE;
-// </editor-fold>
+ 
 
     // <editor-fold defaultstate="collapsed" desc="paginator ">
     Paginator paginator = new Paginator();
@@ -116,6 +105,9 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
 
     @Inject
     PcritsServices pcritsServices;
+    
+    @Inject
+    ResultadocultivoServices resultadocultivoServices;
 // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="fields()">
@@ -133,8 +125,11 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
 
     private List<Etiquetadoimagen> etiquetadoimagens = new ArrayList<>();
     private List<Etiquetadoimagen> etiquetadoimagenSelected = new ArrayList<>();
+    
+    private List<Resultadocultivo> resultadocultivos = new ArrayList<>();
+    private List<Resultadocultivo> resultadocultivoSelected = new ArrayList<>();
 
-    List<Analisis> analisisList = new ArrayList<>();
+
 // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="selected For Dialog()">
@@ -150,105 +145,15 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
     public void init() {
         try {
             prepareNew();
-            findAll();
+    
             otroMotivo = "";
             findAllMotivo();
             findAllDiagnostico();
             findAllPcrits();
             findAllEtiquetadoimagen();
+            findAllResultadocultivo();
             prepareNew();
-            this.analisisLazyDataModel = new LazyDataModel<Analisis>() {
-                @Override
-                public List<Analisis> load(int offset, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
 
-                    switch (paginator.getName()) {
-                        case "findAll":
-
-                            totalRecords = analisisServices.count(paginator.getFilter(),
-                                    paginator.getSort(), 0, 0).intValue();
-                            break;
-
-                    }
-
-                    List<Paginator> list = new ArrayList<>();
-                    if (!isRowPageSmall) {
-
-                        /**
-                         * Utiliza rowPage
-                         */
-                        list = processLazyDataModel(paginator, paginatorOld, offset, rowPage.get(), totalRecords, sortBy);
-
-                    } else {
-
-                        /**
-                         * Utiliza rowPageWithOverlayPanel para el OverlayPanel
-                         */
-                        list = processLazyDataModel(paginator, paginatorOld, offset, rowPageSmall.get(), totalRecords, sortBy);
-
-                    }
-//
-
-                    paginator = list.get(0);
-                    paginatorOld = list.get(1);
-                    Pagination pagination = new Pagination();
-                    if (!isRowPageSmall) {
-
-                        paginator.setNumberOfPage(numberOfPages(totalRecords, rowPage.get()));
-                        pagination = new Pagination(paginator.getPage(), rowPage.get());
-                    } else {
-
-                        paginator.setNumberOfPage(numberOfPages(totalRecords, rowPageSmall.get()));
-                        pagination = new Pagination(paginator.getPage(), rowPageSmall.get());
-                    }
-
-                    List<Analisis> result = new ArrayList<>();
-                    switch ((paginator.getName())) {
-                        case "findAll":
-
-                            result = analisisServices.lookup(paginator.getFilter(),
-                                    paginator.getSort(), paginator.getPage(), rowPageSmall.get());
-
-                            break;
-                        default:
-
-                    }
-
-                    analisisLazyDataModel.setRowCount(totalRecords);
-
-                    PrimeFaces.current().executeScript("setDataTableWithPageStart()");
-                    PrimeFaces.current().executeScript("widgetVardataTable.getPaginator().setPage(0);");
-                    analisisList = result;
-
-                    return result;
-                }
-
-                @Override
-                public int count(Map<String, FilterMeta> map) {
-
-                    return totalRecords;
-
-                }
-
-                @Override
-                public String getRowKey(Analisis object) {
-                    if (object == null || object.getIdanalisis() == null) {
-                        return "";
-                    }
-                    return object.getIdanalisis().toString();
-                }
-
-                @Override
-                public Analisis getRowData(String rowKey) {
-                    for (Analisis t : analisisList) {
-                        if (t != null) {
-                            if (t.getIdanalisis().equals(rowKey)) {
-                                return t;
-                            }
-                        }
-                    }
-                    return null;
-                }
-            };
 
         } catch (Exception e) {
             FacesUtil.errorMessage(FacesUtil.nameOfClassAndMethod() + " " + e.getLocalizedMessage());
@@ -270,35 +175,7 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
     }
 
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="String findAll()">
-    public String findAll() {
-        try {
-
-            Bson filter = ne("nhc", "");
-
-            Document sort = new Document("idanalisis", 1);
-
-            paginator
-                    = new Paginator.Builder()
-                            .page(1)
-                            .filter(filter)
-                            .sort(sort)
-                            .sorted(new Sorted(new Document("idanalisis", -1)))
-                            .title("Todos")
-                            .name("findAll")
-                            .build();
-
-            /**
-             * Limpiar los elementos
-             */
-            setFirstPageDataTable();
-        } catch (Exception e) {
-            // FacesUtil.errorMessage(FacesUtil.nameOfMethod() + "() : " + e.getLocalizedMessage());
-        }
-
-        return "";
-    }
-// </editor-fold>
+   
     // <editor-fold defaultstate="collapsed" desc="String findAllMotivo()">
 
     public String findAllMotivo() {
@@ -367,15 +244,25 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
         return "";
     }
 // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="String findAllResultadocultivo()">
 
-    // <editor-fold defaultstate="collapsed" desc="setFirstPageDataTable()">
-    public void setFirstPageDataTable() {
+    public String findAllResultadocultivo() {
+        try {
 
-        if (dataTable != null) {
-            dataTable.setFirst(0);
+            Bson filter = eq("activo", Boolean.TRUE);
+
+            Document sort = new Document("idresultadocultivo", 1);
+
+            resultadocultivos = resultadocultivoServices.lookup(filter, sort, 0, 0);
+        } catch (Exception e) {
+           FacesUtil.errorMessage(FacesUtil.nameOfMethod() + "() : " + e.getLocalizedMessage());
         }
+
+        return "";
     }
-    // </editor-fold>
+// </editor-fold>
+
+    
 
     @Override
     public void preDestroy() {
@@ -386,8 +273,8 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
     public String refresh() {
         try {
 
-            analisisList = new ArrayList<>();
-            findAll();
+          
+
             PrimeFaces.current().ajax().update("form");
             PrimeFaces.current().ajax().update("dataTable");
 

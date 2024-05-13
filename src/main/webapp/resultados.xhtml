@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+
+      xmlns:p="http://primefaces.org/ui"
+      lang="en"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>MicroProfile RestClient</title>
+        <!--        <style>
+                    body {
+                        background-image: linear-gradient(rgba(0,44,62), rgba(0,44,62,.8), rgba(0,44,62));
+                        color: #fff;
+                    }
+                    a {
+                        font-weight: bold;
+                        color: white;
+                    }
+                </style>-->
+        <style>
+            p {
+                line-height: 1.5;
+                margin: 1;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <!--<script src="https://cdn.tailwindcss.com"></script>-->
+        <f:view contentType="text/html">
+            <p>
+                <!--<a href="https://jakarta.ee"><img width="10%" src="images/jakartaee_logo.jpg"/></a>-->
+            </p>
+
+
+
+
+            <h:form id="form" prependId="false">
+
+                    <p:growl/>
+         <p:commandButton value="Index" action="index"/>
+                <p:card style="margin-left: 10rem;margin-right: 10em;margin-bottom: 2em">
+                    <!--<p:card style="margin-left: 3%;margin-right: 3%;margin-bottom: 2em">-->
+                    <h1>IA Vaginal</h1>
+                    <p>
+               Resultados
+                    </p>
+                    <p>
+                        <a href="https://www.payara.fish/"><img width="5%" src="images/payara-fish-logo.svg" alt="Payara Logo"/></a>
+                    </p>
+
+
+
+
+
+
+
+                    <p:dataTable style="border-style: none" var="item" value="#{resultadosFaces.analisisLazyDataModel}"
+                                 binding="#{resultadosFaces.dataTable}"
+                                 id="dataTable"
+                                 widgetVar="widgetVardataTable"
+                                 lazy="true"
+                                 paginator="true"
+                                 rows="#{resultadosFaces.rowPageSmall.get()}"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 paginatorPosition="both"
+                                 resizableColumns="true" liveResize="true"
+                                 rowKey="#{item.idanalisis}"
+                                 selection="#{resultadosFaces.analisisSelected}"
+                                 rowSelectMode="add"
+                                 >
+                        <f:facet name="header">
+                            <p:outputLabel value="Listado de Analisis #{resultadosFaces.analisisList.size()}"/>
+                            <p:commandButton value="Load" action="#{resultadosFaces.findAll()}" update=":form:dataTable"/>
+
+                        </f:facet>
+
+                        <p:column headerText="idanalisis">
+                            <p:outputLabel value="#{item.idanalisis}"/>
+                        </p:column>
+
+                        <p:column headerText="nhc">
+                            <p:outputLabel value="#{item.nhc}"/>
+                        </p:column>
+
+                        <p:column headerText="name">
+                            <p:outputLabel value="#{item.especialista.name}"/>
+                        </p:column>
+
+                        <p:column headerText="cultivoorina">
+                            <p:outputLabel value="#{item.cultivoorina}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </p:card>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>

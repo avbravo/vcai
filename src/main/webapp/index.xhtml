@@ -36,6 +36,8 @@
 
             <h:form id="form" prependId="false">
 
+                    <p:growl/>
+                    <p:commandButton value="Resultados" action="resultados"/>
 
                 <!--                    <div class="card">
                 
@@ -87,7 +89,6 @@
 
 
 
-                    <p:growl/>
 
 
 
@@ -109,16 +110,17 @@
                                                       />
                                     </div>
                                     <div class="field mb-4 col-6">
-                                        <i class="pi pi-hashtag"/><p:outputLabel value="NHC*"/>
-                                        <p:inputText  value="#{analisisFaces.analisisSelected.nhc}" id="nhc"/>
+                                        <p:outputLabel value="NHC*"/>
+                                        <p:inputText  value="#{analisisFaces.analisisSelected.nhc}" id="nhc"  placeholder="#"/>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <i class="pi pi-hashtag"/><p:outputLabel value="Número de muestra"/>
-                                        <p:inputText value="#{analisisFaces.analisisSelected.numeromuestra}" id="numeromuestra"/>
+                                        <p:outputLabel value="Número de muestra"/>
+                                        <p:inputText value="#{analisisFaces.analisisSelected.numeromuestra}" id="numeromuestra"
+                                                     placeholder="#"/>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <i class="pi pi-hashtag"/><p:outputLabel value="Edad"/>
-                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="edad"/>
+                                        <p:outputLabel value="Edad"/>
+                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="edad"  placeholder="#"/>
                                     </div>
                                     <div class="field mb-4 col-12">
                                         <h4><p:outputLabel value="Motivo de petición"/></h4>
@@ -127,15 +129,95 @@
                                         </p:selectOneRadio>
                                         <p:inputText value="#{analisisFaces.otroMotivo}" required="#{analisisFaces.motivoSelected.motivo eq 'Other'}"/>
                                     </div>
-                                    
+
                                     <div class="field mb-4 col-12">
                                         <h4><p:outputLabel value="Diagnostico"/></h4>
                                         <p:selectOneRadio id="diagnostico" value="#{analisisFaces.diagnosticoSelected}" layout="grid" columns="2" styleClass="grid-radio">
-                                            <f:selectItems value="#{analisisFaces.diagnosticos}" var="diagnostico" itemLabel="#{diagnostico.diagnostico}" itemValue="#{diagnostico.diagnostico}"/>
+                                            <f:selectItems value="#{analisisFaces.diagnosticos}" var="diagnostico" 
+                                                           itemLabel="#{diagnostico.diagnostico}" itemValue="#{diagnostico.diagnostico}"/>
                                         </p:selectOneRadio>
 
                                     </div>
 
+
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Pcrits"/></h4>
+                                        <p:selectManyCheckbox id="pcrits" value="#{analisisFaces.pcritsSelected}" layout="grid" columns="2" styleClass="grid-checkbox"
+                                                              >
+                                            <f:selectItems value="#{analisisFaces.pcritss}" var="pcrits"
+                                                           itemLabel="#{pcrits.pcrits}" itemValue="#{pcrits.pcrits}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+
+
+
+                                    <div class="field mb-4 col-6">
+                                        <p:outputLabel value="CT PCR positiva"/>
+                                        <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" id="ctpcrpositiva" placeholder="#"/>
+                                    </div>
+                                    <p:divider/>
+                                    <h3> <p:outputLabel value="Etiquetado imagen GRAM observador"/></h3>
+
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Datos referidos a IMG 1"/></h4>
+                                        <p:selectManyCheckbox id="etiquetadoimagen" value="#{analisisFaces.etiquetadoimagenSelected}" layout="grid" columns="2" styleClass="grid-checkbox"
+                                                              >
+                                            <f:selectItems value="#{analisisFaces.etiquetadoimagens}" var="etiquetadoimagen"
+                                                           itemLabel="#{etiquetadoimagen.etiquetadoimagen}" itemValue="#{etiquetadoimagen.etiquetadoimagen}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+
+
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Presencia leucocitos (Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" 
+                                                                                                                     id="presencialeucocitos" placeholder="#" size="5"/></h4>
+
+                                        <p:selectOneRadio id="line1" value="#{analisisFaces.analisisSelected.ctpcrpositiva}" layout="lineDirection">
+
+                                            <f:selectItem itemLabel="0" itemValue="0"/>
+                                            <f:selectItem itemLabel="1" itemValue="2-4"/>
+                                            <f:selectItem itemLabel="5-29" itemValue="5-29"/>
+                                            <f:selectItem itemLabel=">30" itemValue=">30"/>
+                                        </p:selectOneRadio>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Presencia levaduras (Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}"
+                                                                                                                    id="presencialevaduras" placeholder="#" size="5"/></h4>
+
+                                        <p:selectOneRadio id="line2" value="#{analisisFaces.analisisSelected.ctpcrpositiva}" layout="lineDirection">
+
+                                            <f:selectItem itemLabel="0" itemValue="0"/>
+                                            <f:selectItem itemLabel="1" itemValue="2-4"/>
+                                            <f:selectItem itemLabel="5-29" itemValue="5-29"/>
+                                            <f:selectItem itemLabel=">30" itemValue=">30"/>
+                                        </p:selectOneRadio>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Presencia epiteliales(Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" id="presenciaepiteliales" placeholder="#" size="5"/></h4>
+
+                                        <p:selectOneRadio id="line3" value="#{analisisFaces.analisisSelected.ctpcrpositiva}" layout="lineDirection">
+
+                                            <f:selectItem itemLabel="0" itemValue="0"/>
+                                            <f:selectItem itemLabel="1" itemValue="2-4"/>
+                                            <f:selectItem itemLabel="5-29" itemValue="5-29"/>
+                                            <f:selectItem itemLabel=">30" itemValue=">30"/>
+                                        </p:selectOneRadio>
+                                    </div>
+
+                                    <h4><p:outputLabel value="Escala Nugget observador"/></h4>
+
+                                    <div class="field mb-4 col-12">
+                                        <p:outputLabel value=" &#62; 7 Vaginosis bacteriana ; 4-6 mixto &#60; Normal"/>
+                                        <p:inputText id="escalanuggetobservador" value="#{analisisFaces.analisisSelected.escalanuggetobservador}"/>
+                                        <p:slider for="escalanuggetobservador" minValue="1" maxValue="10" step="1" range="max">
+                                            <p:ajax event="slideEnd" listener="#{analisisFaces.onSlideEnd}" update=":form:escalanuggetobservador"/>
+                                        </p:slider>
+
+
+                                    </div>
+                                    <p:divider/>
 
 
 

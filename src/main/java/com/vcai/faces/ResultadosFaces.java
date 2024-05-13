@@ -56,7 +56,7 @@ import org.primefaces.model.SortMeta;
 @Named
 @ViewScoped
 @Data
-public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPaginator, AnalisisFacesServices, FacesServices {
+public class ResultadosFaces implements Serializable, JmoordbCoreXHTMLUtil, IPaginator, AnalisisFacesServices, FacesServices {
 
     private static final long serialVersionUID = 1L;
 

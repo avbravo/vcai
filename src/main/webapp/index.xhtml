@@ -17,12 +17,12 @@
                         color: white;
                     }
                 </style>-->
-<style>
-    p {
-        line-height: 1.5;
-        margin: 1;
-    }
-</style>
+        <style>
+            p {
+                line-height: 1.5;
+                margin: 1;
+            }
+        </style>
     </h:head>
     <h:body>
         <!--<script src="https://cdn.tailwindcss.com"></script>-->
@@ -37,9 +37,45 @@
             <h:form id="form" prependId="false">
 
 
+                <!--                    <div class="card">
                 
-                  <!--<p:card style="width: 75rem; margin-bottom: 2em">-->
-                  <p:card style="margin-bottom: 2em">
+                                        <div class="grid ui-fluid">
+                                            <div class="col-12 md:col-4">
+                                                <div class="ui-inputgroup">
+                                                    <div class="ui-inputgroup-addon"><p:outputLabel value ="Fecha"/></div>
+                                                    <p:datePicker value="#{analisisFaces.analisisSelected.fecha}" placeholder="Fecha"
+                                                                  pattern="dd/MM/yyyy HH:mm a"
+                                                                  timeInput="true"
+                                                                  hourFormat="12"
+                                                                  showTime="true"
+                                                                  locale="es"
+                                                                  />
+                                                     <div class="ui-inputgroup-addon"><i class="pi pi-calendar"></i></div>
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-12 md:col-4">
+                                                <div class="ui-inputgroup">
+                                                    <div class="ui-inputgroup-addon"><p:outputLabel value ="NHC"/></div>
+                                                    <p:inputText placeholder="NHC"/>
+                                                    <div class="ui-inputgroup-addon"><i class="pi  pi-hashtag"></i></div>
+                                                    
+                                                   
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-12 md:col-4">
+                                                <div class="ui-inputgroup">
+                                                    <div class="ui-inputgroup-addon">www</div>
+                                                    <p:inputText placeholder="Website"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+                <!--<p:card style="width: 75rem; margin-bottom: 2em">-->
+                <p:card style="margin-left: 10rem;margin-right: 10em;margin-bottom: 2em">
+                    <!--<p:card style="margin-left: 3%;margin-right: 3%;margin-bottom: 2em">-->
                     <h1>IA Vaginal</h1>
                     <p>
                         Proyecto IA Vaginal - Imágenes
@@ -53,32 +89,6 @@
 
                     <p:growl/>
 
- <div class="card">
-        <h5>Addons</h5>
-        <div class="grid ui-fluid">
-            <div class="col-12 md:col-4">
-                <div class="ui-inputgroup">
-                    <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                    <p:inputText placeholder="Username"/>
-                </div>
-            </div>
-
-            <div class="col-12 md:col-4">
-                <div class="ui-inputgroup">
-                    <div class="ui-inputgroup-addon">$</div>
-                    <p:inputText placeholder="Price"/>
-                    <div class="ui-inputgroup-addon">.00</div>
-                </div>
-            </div>
-
-            <div class="col-12 md:col-4">
-                <div class="ui-inputgroup">
-                    <div class="ui-inputgroup-addon">www</div>
-                    <p:inputText placeholder="Website"/>
-                </div>
-            </div>
-        </div>
-        </div>
 
 
                     <div class="surface-section">
@@ -87,8 +97,8 @@
                             <div class="col-12 lg:col-12">
                                 <div class="grid formgrid ui-fluid">
                                     <div class="field mb-4 col-6">
-                                
-                                      <i class="pi pi-calendar"/>  <p:outputLabel value="Fecha"/>
+
+                                        <i class="pi pi-calendar"/>  <p:outputLabel value="Fecha"/>
 
                                         <p:datePicker value="#{analisisFaces.analisisSelected.fecha}" placeholder="Fecha"
                                                       pattern="dd/MM/yyyy HH:mm a"
@@ -103,17 +113,32 @@
                                         <p:inputText  value="#{analisisFaces.analisisSelected.nhc}" id="nhc"/>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                       <i class="pi pi-hashtag"/><p:outputLabel value="Número de muestra"/>
+                                        <i class="pi pi-hashtag"/><p:outputLabel value="Número de muestra"/>
                                         <p:inputText value="#{analisisFaces.analisisSelected.numeromuestra}" id="numeromuestra"/>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                       <i class="pi pi-hashtag"/><p:outputLabel value="Edad"/>
-                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="numeromuestra"/>
+                                        <i class="pi pi-hashtag"/><p:outputLabel value="Edad"/>
+                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="edad"/>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Motivo de petición"/></h4>
+                                        <p:selectOneRadio id="motivo" value="#{analisisFaces.motivoSelected}" layout="grid" columns="3" styleClass="grid-radio">
+                                            <f:selectItems value="#{analisisFaces.motivos}" var="motivo" itemLabel="#{motivo.motivo}" itemValue="#{motivo.motivo}"/>
+                                        </p:selectOneRadio>
+                                        <p:inputText value="#{analisisFaces.otroMotivo}" required="#{analisisFaces.motivoSelected.motivo eq 'Other'}"/>
                                     </div>
                                     
-                                    
-                                    
-                                    
+                                    <div class="field mb-4 col-12">
+                                        <h4><p:outputLabel value="Diagnostico"/></h4>
+                                        <p:selectOneRadio id="diagnostico" value="#{analisisFaces.diagnosticoSelected}" layout="grid" columns="2" styleClass="grid-radio">
+                                            <f:selectItems value="#{analisisFaces.diagnosticos}" var="diagnostico" itemLabel="#{diagnostico.diagnostico}" itemValue="#{diagnostico.diagnostico}"/>
+                                        </p:selectOneRadio>
+
+                                    </div>
+
+
+
+
                                     <div class="field mb-4 col-12">
                                         <label class="font-medium">Avatar</label>
                                         <div class="flex align-items-center">
@@ -216,7 +241,7 @@
 
                     </p:dataTable>
 
-                  </p:card>
+                </p:card>
             </h:form>
         </f:view>
     </h:body>

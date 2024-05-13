@@ -11,11 +11,16 @@ import com.avbravo.jmoordbutils.paginator.IPaginator;
 import com.avbravo.jmoordbutils.paginator.Paginator;
 import com.jmoordb.core.model.Pagination;
 import com.jmoordb.core.model.Sorted;
+import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.ne;
 import com.vcai.faces.services.AnalisisFacesServices;
 import com.vcai.faces.services.FacesServices;
 import com.vcai.model.Analisis;
+import com.vcai.model.Diagnostico;
+import com.vcai.model.Motivo;
 import com.vcai.services.AnalisisServices;
+import com.vcai.services.DiagnosticoServices;
+import com.vcai.services.MotivoServices;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -94,10 +99,25 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
     // <editor-fold defaultstate="collapsed" desc="Services">
     @Inject
     AnalisisServices analisisServices;
+    
+    @Inject
+    DiagnosticoServices diagnosticoServices;
+    
+    @Inject
+    MotivoServices motivoServices;
 // </editor-fold>
    
     // <editor-fold defaultstate="collapsed" desc="fields()">
         private Analisis analisisSelected = new Analisis();
+        
+         private List<Motivo> motivos = new ArrayList<>();
+        private Motivo motivoSelected = new Motivo();
+        private String otroMotivo = "";
+        
+        private List<Diagnostico> diagnosticos = new ArrayList<>();
+        private Diagnostico diagnosticoSelected = new Diagnostico();
+        
+       
         
             List<Analisis> analisisList = new ArrayList<>();
 // </editor-fold>
@@ -123,7 +143,9 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
         try {
 prepareNew();
             findAll();
-           
+            otroMotivo = "";
+           findAllMotivo();
+           findAllDiagnostico();
             this.analisisLazyDataModel = new LazyDataModel<Analisis>() {
                 @Override
                 public List<Analisis> load(int offset, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
@@ -259,6 +281,38 @@ prepareNew();
              * Limpiar los elementos
              */
             setFirstPageDataTable();
+        } catch (Exception e) {
+            // FacesUtil.errorMessage(FacesUtil.nameOfMethod() + "() : " + e.getLocalizedMessage());
+        }
+
+        return "";
+    }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="String findAllMotivo()">
+    public String findAllMotivo() {
+        try {
+
+            Bson filter = eq("activo", Boolean.TRUE);
+
+            Document sort = new Document("idmotivo", 1);
+
+            motivos= motivoServices.lookup(filter, sort, 0, 0);
+        } catch (Exception e) {
+            // FacesUtil.errorMessage(FacesUtil.nameOfMethod() + "() : " + e.getLocalizedMessage());
+        }
+
+        return "";
+    }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="String findAllDiagnostico()">
+    public String findAllDiagnostico() {
+        try {
+
+            Bson filter = eq("activo", Boolean.TRUE);
+
+            Document sort = new Document("iddiagnostico", 1);
+
+            diagnosticos= diagnosticoServices.lookup(filter, sort, 0, 0);
         } catch (Exception e) {
             // FacesUtil.errorMessage(FacesUtil.nameOfMethod() + "() : " + e.getLocalizedMessage());
         }

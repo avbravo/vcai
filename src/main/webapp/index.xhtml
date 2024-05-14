@@ -76,8 +76,10 @@
                                     </div>-->
 
                 <!--<p:card style="width: 75rem; margin-bottom: 2em">-->
-                <p:card style="margin-left: 20rem;margin-right: 20em;margin-bottom: 2em">
-                    <!--<p:card style="margin-left: 3%;margin-right: 3%;margin-bottom: 2em">-->
+                <!--<p:card style="margin-left: 3%;margin-right: 3%;margin-bottom: 2em">-->
+                <!--<p:card style="margin-left: 20rem;margin-right: 20em;margin-bottom: 2em">-->
+                <p:card style="margin-bottom: 2em; margin-left: 5rem; margin-right: 20em;">
+
                     <h1>IA Vaginal</h1>
                     <p>
                         Proyecto IA Vaginal - Imágenes
@@ -107,31 +109,34 @@
                                                       hourFormat="12"
                                                       showTime="true"
                                                       locale="es"
+                                                      size="15"
                                                       />
                                     </div>
                                     <div class="field mb-4 col-6">
                                         <p:outputLabel value="NHC*"/>
-                                        <p:inputText  value="#{analisisFaces.analisisSelected.nhc}" id="nhc"  placeholder="#"/>
+                                        <p:inputText  value="#{analisisFaces.analisisSelected.nhc}" id="nhc"  placeholder="#" size="4"/>
                                     </div>
                                     <div class="field mb-4 col-12">
                                         <p:outputLabel value="Número de muestra"/>
                                         <p:inputText value="#{analisisFaces.analisisSelected.numeromuestra}" id="numeromuestra"
-                                                     placeholder="#"/>
+                                                     placeholder="#" size="4"/>
                                     </div>
                                     <div class="field mb-4 col-12">
                                         <p:outputLabel value="Edad"/>
-                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="edad"  placeholder="#"/>
+                                        <p:inputText value="#{analisisFaces.analisisSelected.edad}" id="edad"  placeholder="#" size="4"/>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Motivo de petición"/></h4>
-                                        <p:selectOneRadio id="motivo" value="#{analisisFaces.motivoSelected}" layout="grid" columns="3" styleClass="grid-radio">
+                                        <p:outputLabel value="Motivo de petición"/>  
+                                        <p:selectOneRadio id="motivo" value="#{analisisFaces.motivoSelected}" layout="grid" columns="2" styleClass="grid-radio">
                                             <f:selectItems value="#{analisisFaces.motivos}" var="motivo" itemLabel="#{motivo.motivo}" itemValue="#{motivo.motivo}"/>
                                         </p:selectOneRadio>
-                                        <p:inputText value="#{analisisFaces.otroMotivo}" required="#{analisisFaces.motivoSelected.motivo eq 'Other'}"/>
+                                        <p:inputText value="#{analisisFaces.otroMotivo}" required="#{analisisFaces.motivoSelected.motivo eq 'Other'}"
+                                                     size="35"
+                                                     />
                                     </div>
 
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Diagnostico"/></h4>
+                                        <p:outputLabel value="Diagnostico"/>  
                                         <p:selectOneRadio id="diagnostico" value="#{analisisFaces.diagnosticoSelected}" layout="grid" columns="2" styleClass="grid-radio">
                                             <f:selectItems value="#{analisisFaces.diagnosticos}" var="diagnostico" 
                                                            itemLabel="#{diagnostico.diagnostico}" itemValue="#{diagnostico.diagnostico}"/>
@@ -141,7 +146,7 @@
 
 
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Pcrits"/></h4>
+                                        <p:outputLabel value="Pcrits"/>  
                                         <p:selectManyCheckbox id="pcrits" value="#{analisisFaces.pcritsSelected}" layout="grid" columns="2" styleClass="grid-checkbox"
                                                               >
                                             <f:selectItems value="#{analisisFaces.pcritss}" var="pcrits"
@@ -154,13 +159,13 @@
 
                                     <div class="field mb-4 col-6">
                                         <p:outputLabel value="CT PCR positiva"/>
-                                        <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" id="ctpcrpositiva" placeholder="#"/>
+                                        <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" id="ctpcrpositiva" placeholder="#" size="4"/>
                                     </div>
                                     <p:divider/>
-                                    <h3> <p:outputLabel value="Etiquetado imagen GRAM observador"/></h3>
+                                    <p:outputLabel value="Etiquetado imagen GRAM observador"/>  
 
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Datos referidos a IMG 1"/></h4>
+                                        <p:outputLabel value="Datos referidos a IMG 1"/>  
                                         <p:selectManyCheckbox id="etiquetadoimagen" value="#{analisisFaces.etiquetadoimagenSelected}" layout="grid" columns="2" styleClass="grid-checkbox"
                                                               >
                                             <f:selectItems value="#{analisisFaces.etiquetadoimagens}" var="etiquetadoimagen"
@@ -171,8 +176,8 @@
 
 
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Presencia leucocitos (Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" 
-                                                                                                                     id="presencialeucocitos" placeholder="#" size="5"/></h4>
+                                        <p:outputLabel value="Presencia leucocitos (Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" 
+                                                                                                                 id="presencialeucocitos" placeholder="#" size="5"/>  
 
                                         <p:selectOneRadio id="line1" value="#{analisisFaces.analisisSelected.ctpcrpositiva}" layout="lineDirection">
 
@@ -183,8 +188,8 @@
                                         </p:selectOneRadio>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Presencia levaduras (Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}"
-                                                                                                                    id="presencialevaduras" placeholder="#" size="5"/></h4>
+                                        <p:outputLabel value="Presencia levaduras (Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}"
+                                                                                                                id="presencialevaduras" placeholder="#" size="5"/>  
 
                                         <p:selectOneRadio id="line2" value="#{analisisFaces.analisisSelected.ctpcrpositiva}" layout="lineDirection">
 
@@ -195,24 +200,25 @@
                                         </p:selectOneRadio>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <h4><p:outputLabel value="Presencia epiteliales(Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" id="presenciaepiteliales" placeholder="#" size="5"/></h4>
+                                        <p:outputLabel value="Presencia epiteliales(Imagen 1)"/>   <p:inputText  value="#{analisisFaces.analisisSelected.ctpcrpositiva}" id="presenciaepiteliales" placeholder="#" size="5"/>  
 
                                         <p:selectOneRadio id="line3" value="#{analisisFaces.analisisSelected.ctpcrpositiva}" layout="lineDirection">
 
                                             <f:selectItem itemLabel="0" itemValue="0"/>
-                                            _________________
+
                                             <f:selectItem itemLabel="1" itemValue="2-4"/>
                                             <f:selectItem itemLabel="5-29" itemValue="5-29"/>
                                             <f:selectItem itemLabel=">30" itemValue=">30"/>
                                         </p:selectOneRadio>
                                     </div>
 
-                                    <h4><p:outputLabel value="Escala Nugget observador"/></h4>
+                                
 
                                     <div class="field mb-4 col-12">
+                                            <p:outputLabel value="Escala Nugget observador"/>
                                         <p:outputLabel value=" &#62; 7 Vaginosis bacteriana ; 4-6 mixto &#60; Normal"/>
-                                        <p:inputText id="escalanuggetobservador" value="#{analisisFaces.analisisSelected.escalanuggetobservador}"/>
-                                        <p:slider for="escalanuggetobservador" minValue="1" maxValue="10" step="1" range="max">
+                                        <p:inputText id="escalanuggetobservador" value="#{analisisFaces.analisisSelected.escalanuggetobservador}" size="4"/>
+                                        <p:slider for="escalanuggetobservador" minValue="1" maxValue="10" step="1" range="max" >
 
                                         </p:slider>
 
@@ -220,10 +226,10 @@
                                     </div>
                                     <p:divider/>
 
-                                    <h3> <p:outputLabel value="Resultado cultivo"/></h3>
+                                  
 
                                     <div class="field mb-4 col-12">
-
+   <p:outputLabel value="Resultado cultivo"/> 
                                         <p:selectManyCheckbox id="resultadocultivo" value="#{analisisFaces.resultadocultivoSelected}" layout="grid" columns="2" styleClass="grid-checkbox"
                                                               >
                                             <f:selectItems value="#{analisisFaces.resultadocultivos}" var="resultadocultivo"
@@ -234,7 +240,7 @@
                                     <p:divider/>
 
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 1</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 1"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -244,7 +250,7 @@
                                         </div>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 2</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 2"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -254,7 +260,20 @@
                                         </div>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 3</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 3"/>
+                                        <div class="flex align-items-center">
+                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
+                                                            library="primeblocks-app" alt="Image"
+                                                            styleClass="mr-4"/>
+                                            <p:fileUpload mode="simple" skinSimple="true" label="Seleccione Imagén" auto="true"
+                                                          process="@this"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="field mb-4 col-12">
+                                        
+                                        <p:outputLabel value="Imagen Tinción Gram 4"/>
+                                        
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -264,7 +283,7 @@
                                         </div>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 4</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 5"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -274,38 +293,7 @@
                                         </div>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 5</label>
-                                        <div class="flex align-items-center">
-                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
-                                                            library="primeblocks-app" alt="Image"
-                                                            styleClass="mr-4"/>
-                                            <p:fileUpload mode="simple" skinSimple="true" label="Seleccione Imagén" auto="true"
-                                                          process="@this"/>
-                                        </div>
-                                    </div>
-                                    <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 6</label>
-                                        <div class="flex align-items-center">
-                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
-                                                            library="primeblocks-app" alt="Image"
-                                                            styleClass="mr-4"/>
-                                            <p:fileUpload mode="simple" skinSimple="true" label="Seleccione Imagén" auto="true"
-                                                          process="@this"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 7</label>
-                                        <div class="flex align-items-center">
-                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
-                                                            library="primeblocks-app" alt="Image"
-                                                            styleClass="mr-4"/>
-                                            <p:fileUpload mode="simple" skinSimple="true" label="Seleccione Imagén" auto="true"
-                                                          process="@this"/>
-                                        </div>
-                                    </div>
-                                    <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 8</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 6"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -315,9 +303,8 @@
                                         </div>
                                     </div>
 
-
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 9</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 7"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -327,7 +314,29 @@
                                         </div>
                                     </div>
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen Tinción Gram 10</label>
+                                        <p:outputLabel value="Imagen Tinción Gram 8"/>
+                                        <div class="flex align-items-center">
+                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
+                                                            library="primeblocks-app" alt="Image"
+                                                            styleClass="mr-4"/>
+                                            <p:fileUpload mode="simple" skinSimple="true" label="Seleccione Imagén" auto="true"
+                                                          process="@this"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="field mb-4 col-12">
+                                        <p:outputLabel value="Imagen Tinción Gram 9"/>
+                                        <div class="flex align-items-center">
+                                            <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
+                                                            library="primeblocks-app" alt="Image"
+                                                            styleClass="mr-4"/>
+                                            <p:fileUpload mode="simple" skinSimple="true" label="Seleccione Imagén" auto="true"
+                                                          process="@this"/>
+                                        </div>
+                                    </div>
+                                    <div class="field mb-4 col-12">
+                                        <p:outputLabel value="Imagen Tinción Gram 10"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -337,14 +346,14 @@
                                         </div>
                                     </div>
                                     <p:divider/>
-                                    <h4><p:outputLabel value="¿Imagen 11 cultivo?"/></h4>
+                                    <p:outputLabel value="¿Imagen 11 cultivo?"/>  
                                     <div class="field mb-4 col-12 md:col-6">
                                         <p:selectBooleanCheckbox value="#{analisisFaces.analisisSelected.imagen11cultivo}" itemLabel="Si"/>
 
                                     </div>
 
                                     <div class="field mb-4 col-12">
-                                        <label class="font-medium">Imagen PLACA recuento levaduras</label>
+                                        <p:outputLabel value="Imagen PLACA recuento levaduras"/>
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"
@@ -354,14 +363,14 @@
                                         </div>
                                     </div>
 
-                                    
-                                     <p:divider/>
-                                    <h4><p:outputLabel value="Recuento crecimiento de la placa de hongos"/></h4>
-                                    <div class="field mb-4 col-12 md:col-6">
-                                       <h4><p:outputLabel value="Información proporcionada por el observador"/></h4>
 
-                                       <p:selectOneRadio id="ecuentocrecimientoplacahongos" value="#{analisisFaces.analisisSelected.recuentocrecimientoplacahongos}"
-                                                       layout="pageDirection">
+                                    <p:divider/>
+                                    <p:outputLabel value="Recuento crecimiento de la placa de hongos"/>  
+                                    <div class="field mb-4 col-12 md:col-6">
+                                        <p:outputLabel value="Información proporcionada por el observador"/>  
+
+                                        <p:selectOneRadio id="ecuentocrecimientoplacahongos" value="#{analisisFaces.analisisSelected.recuentocrecimientoplacahongos}"
+                                                          layout="pageDirection">
 
                                             <f:selectItem itemLabel="No crecimiento" itemValue="No crecimiento"/>
                                             <f:selectItem itemLabel="10^1" itemValue="10^1"/>
@@ -374,9 +383,9 @@
                                     </div>
 
                                     <p:divider/>
-                                    <h4><p:outputLabel value="Calidad de Tinción"/></h4>
-                                    <div class="field mb-4 col-12 md:col-6">
 
+                                    <div class="field mb-4 col-12 md:col-6">
+                                        <p:outputLabel value="Calidad de Tinción"/>  
 
                                         <p:selectOneMenu filter="true" filterMatchMode="startsWith" value="#{analisisFaces.analisisSelected.calidadtincion}">
                                             <f:selectItem itemLabel="Seleccione" itemValue=""/>
@@ -389,11 +398,11 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <p:divider/>
-                                    <h4><p:outputLabel value="Cultivo orina"/></h4>
+
                                     <div class="field mb-4 col-12 md:col-6">
+                                        <p:outputLabel value="Cultivo orina"/>  
 
-
-                                        <p:selectOneMenu filter="true" filterMatchMode="startsWith" value="#{analisisFaces.analisisSelected.cultivoorina}">
+                                        <p:selectOneMenu filter="true" filterMatchMode="startsWith" value="#{analisisFaces.analisisSelected.cultivoorina}" >
                                             <f:selectItem itemLabel="Seleccione" itemValue=""/>
                                             <f:selectItem itemLabel="No pedido" itemValue="No pedido"/>
                                             <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
@@ -404,7 +413,7 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <p:divider/>
-                                    <h4><p:outputLabel value="Imagen con potencial discrepancia observador"/></h4>
+                                    <p:outputLabel value="Imagen con potencial discrepancia observador"/>  
                                     <div class="field mb-4 col-12 md:col-6">
 
                                         <p:outputLabel value="Indicar si existe discrepancia con el informe realizado por los técnicos en SERVOLAB"/>

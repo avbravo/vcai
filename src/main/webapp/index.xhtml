@@ -212,10 +212,10 @@
                                         </p:selectOneRadio>
                                     </div>
 
-                                
+
 
                                     <div class="field mb-4 col-12">
-                                            <p:outputLabel value="Escala Nugget observador"/>
+                                        <p:outputLabel value="Escala Nugget observador"/>
                                         <p:outputLabel value=" &#62; 7 Vaginosis bacteriana ; 4-6 mixto &#60; Normal"/>
                                         <p:inputText id="escalanuggetobservador" value="#{analisisFaces.analisisSelected.escalanuggetobservador}" size="4"/>
                                         <p:slider for="escalanuggetobservador" minValue="1" maxValue="10" step="1" range="max" >
@@ -226,10 +226,10 @@
                                     </div>
                                     <p:divider/>
 
-                                  
+
 
                                     <div class="field mb-4 col-12">
-   <p:outputLabel value="Resultado cultivo"/> 
+                                        <p:outputLabel value="Resultado cultivo"/> 
                                         <p:selectManyCheckbox id="resultadocultivo" value="#{analisisFaces.resultadocultivoSelected}" layout="grid" columns="2" styleClass="grid-checkbox"
                                                               >
                                             <f:selectItems value="#{analisisFaces.resultadocultivos}" var="resultadocultivo"
@@ -269,11 +269,11 @@
                                                           process="@this"/>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="field mb-4 col-12">
-                                        
+
                                         <p:outputLabel value="Imagen Tinción Gram 4"/>
-                                        
+
                                         <div class="flex align-items-center">
                                             <p:graphicImage name="images/blocks/avatars/circle/avatar-f-4.png"
                                                             library="primeblocks-app" alt="Image"

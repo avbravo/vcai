@@ -15,25 +15,23 @@ import org.bson.conversions.Bson;
  * @author avbravo
  */
 public interface MotivoServices {
-        public List<Motivo> findAll();
-        public Optional<Motivo> findByIdmotivo( Long idmotivo);
-       public Optional<Motivo> findByMotivo(String motivo) ;
-  
-    public Optional<Motivo> save( Motivo motivo);
 
-   
+    public List<Motivo> findAll();
+
+    public Optional<Motivo> findByIdmotivo(Long idmotivo);
+
+    public Optional<Motivo> findByMotivo(String motivo);
+
+    public Optional<Motivo> save(Motivo motivo);
 
     public Boolean update(Motivo motivo);
 
-
-   
-
     public Boolean delete(Long idmotivo);
 
-   
-    public List<Motivo> lookup( Bson filter, Document sort, Integer page, Integer size);
+    public List<Motivo> lookup(Bson filter, Document sort, Integer page, Integer size);
+
     public Long count(Bson filter, Document sort, Integer page, Integer size);
-    
+
 //    
 //     public Long countLikeByMotivo(String motivo);
 //    

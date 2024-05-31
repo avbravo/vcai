@@ -300,4 +300,14 @@ public class AnalisisFaces implements Serializable, JmoordbCoreXHTMLUtil, IPagin
 
        
     }
+    
+    public String save(Analisis analisis){
+        try{
+  analisisServices.save(analisis);
+  prepareNew();
+          } catch (Exception e) {
+            FacesUtil.errorMessage(FacesUtil.nameOfClassAndMethod() + " " + e.getLocalizedMessage());
+        }
+        return "";
+    }
 }

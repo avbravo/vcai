@@ -1,0 +1,283 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite = "http://java.sun.com/jsf/composite"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+      xmlns:jsf="jakarta.faces">
+
+    <composite:interface >
+        <composite:attribute name="pendiente" default="false"/>
+        <composite:attribute name="progreso" default="false"/>
+        <composite:attribute name="finalizado" default="false"/>
+    </composite:interface>
+
+    <composite:implementation >
+
+
+
+        <div class="surface-card  border-round flex p-3 flex-column md:flex-row shadow-4 ">
+
+
+
+            <div class="md:border-bottom-none surface-border flex-auto p-3  #{backlogFaces.colorTarjeta(tarjeta)} shadow-6">
+
+
+                <div class="flex align-items-center justify-content-between mb-4">
+
+                    <i class="#{tarjeta.icono.icono} text-blue-500 text-xl mr-2" jsf:rendered="#{backlogFaces.showIcon}"/>
+                    <span class="text-xl font-medium text-900"><p:outputLabel value="#{tarjeta.tarjeta}"/></span>
+                    <div class="ml-auto">
+
+                        <p:menuButton  icon="pi pi-ellipsis-v" buttonStyleClass="ui-button-flat ui-button-plain rounded-button" 
+                                       rendered="#{backlogFaces.isEditable}"   >
+
+
+
+                            <p:menuitem  styleClass="ui-button-flat"
+                                         update=":form, outputPanelTarjetaColaboradorDataTable"
+                                         rendered="#{backlogFaces.showProyectoForaneo() eq false}"
+                                         action="#{backlogFaces.prepareColaborador(tarjeta)}"
+                                         value="#{core['menuitem.colaborador']}"
+                                         oncomplete="PF('overlayPanelTarjetaColaboradorDataTable').show('#{component.clientId}')"
+                                         icon="pi pi-fw pi-user-minus" title="#{core['menuitem.colaborador']}">
+
+                            </p:menuitem>
+
+                            <p:menuitem  styleClass="ui-button-flat"
+                                         value="#{core['menuitem.clonar']}"
+                                         rendered="#{backlogFaces.showProyectoForaneo() eq false}"
+                                         action="#{backlogFaces.prepareClonar(tarjeta)}"
+                                         update=":form, outputPanelTarjetaClonar"
+                                         oncomplete="PF('overlayPanelTarjetaClonar').show('#{component.clientId}')"
+                                         icon="pi pi-fw pi-clone" title="#{core['menuitem.clonar']}">
+
+                            </p:menuitem>
+
+
+
+
+                            <p:separator rendered="#{backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"/>
+                            <p:menuitem  styleClass="ui-button-flat"
+                                         update=":form, outputPanelTarjetaEtiqueta"                                  
+                                         value="#{core['menuitem.etiqueta']}"
+                                         title="#{core['menuitem.etiqueta']}"
+                                         rendered="#{backlogFaces.showProyectoForaneo() eq false and backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                         action="#{backlogFaces.prepareEtiqueta(tarjeta)}"
+                                         oncomplete="PF('overlayPanelTarjetaEtiqueta').show('#{component.clientId}')"
+                                         icon="pi pi-fw pi-hashtag" >
+
+                            </p:menuitem>
+
+                        </p:menuButton>
+
+
+                    </div>
+                </div>
+
+    <p:divider/>
+
+                <div class="flex align-items-center">
+                    <span class="text-700 font-medium">#{msg['field.idtarjeta']} #{tarjeta.idtarjeta}</span>
+                </div>
+                <div class="flex align-items-center">
+<!--                    <i class="#{tarjeta.icono.icono} text-blue-500 text-xl mr-2"/>-->
+                    <span class="text-700 font-medium">#{msg['label.vence']} #{backlogFaces.showDateWithHour(tarjeta.fechafinal)}</span>
+
+
+                    <p:commandButton    
+                        rendered="#{backlogFaces.diasPendientes(tarjeta) gt 1 }"
+                        value="#{backlogFaces.diasPendientes(tarjeta)}"
+                        icon="pi pi-clock" title="#{core['button.diaspendientes']}"                                       
+                        styleClass="rounded-button ui-button-primary ui-button-flat"/>
+                    <p:commandButton                                   
+                        value="#{backlogFaces.diasPendientes(tarjeta)}"
+                        rendered="#{backlogFaces.diasPendientes(tarjeta) lt 0}"
+                        icon="pi pi-clock"   title="#{core['button.diasatrasados']}"                                     
+                        styleClass="rounded-button ui-button-help ui-button-flat"/>
+
+
+                </div>
+
+                <div class="flex align-items-center">
+                    <span class="text-700 font-medium">#{msg['field.tipotarjeta']} :  #{tarjeta.tipotarjeta.tipotarjeta}</span>
+                </div>
+                <div class="flex align-items-center">
+
+
+                    <ui:repeat value="#{tarjeta.etiqueta}" var="etiqueta">
+
+                        <p:tag severity="#{etiqueta.severity}" value="#{etiqueta.etiqueta}" rounded="true"/>
+
+                    </ui:repeat>
+                </div>
+
+                <div class="flex align-items-center">
+
+                    <span class="text-700 font-medium">#{msg['label.prioridad']} #{tarjeta.prioridad}</span>
+
+                </div>
+
+                <div class="flex align-items-center">
+
+                    <div class="card " style="width: 18rem;">
+                        <p:avatarGroup styleClass="mb-3">
+                            <ui:repeat value="#{tarjeta.userView}" var="userView">
+
+                                <p:avatar size="medium" shape="circle">
+                                    <p:graphicImage 
+                                        title="#{userView.name}"
+                                        stream="false" cache="false"
+                                        rendered="#{backlogFaces.jmoordbCoreMediaManager.isImageAndExists(backlogFaces.repairPathOfFile(userView.photo))}"
+                                        value="#{backlogFaces.jmoordbCoreMediaManager.generate(backlogFaces.repairPathOfFile(userView.photo),'')}" 
+                                        />
+                                </p:avatar>
+                                <p:avatar rendered="#{backlogFaces.jmoordbCoreMediaManager.isImageAndExists(backlogFaces.repairPathOfFile(userView.photo)) eq false}"
+                                          title="#{userView.name}"
+                                          label="#{userView.name}" styleClass="mr-2" size="small" />
+
+
+                            </ui:repeat>
+
+
+
+                        </p:avatarGroup>
+                    </div>
+
+                </div>
+
+                <div class="flex align-items-center">
+
+                    <p:commandButton update=":form, outputPanelTarjetaView" 
+                                     styleClass="ui-button-flat"    
+                                     rendered="#{backlogFaces.tienePrivilegiosVerTarjeta(tarjeta)}"
+                                     action="#{backlogFaces.prepareView(tarjeta)}"
+                                     oncomplete="PF('overlayPanelTarjetaView').show('#{component.clientId}')"
+                                     icon="pi pi-fw pi-eye" title="#{core['menuitem.viewdetails']}">
+
+                    </p:commandButton>
+
+                    <p:commandButton update=":form, outputPanelTarjetaEditar" 
+                                     styleClass="ui-button-flat ui-button-success"   
+                                     rendered="#{backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                     action="#{backlogFaces.prepareEditar(tarjeta)}"
+                                     oncomplete="PF('overlayPanelTarjetaEditar').show('#{component.clientId}')"
+                                     icon="pi pi-fw pi-file-edit" 
+                                     title="#{core['menuitem.editar']}">
+                    </p:commandButton>
+
+                    <p:commandButton id="commandButtonArchivo" 
+                                     rendered="#{backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                     value="#{tarjeta.archivo.size()}"
+                                     icon="pi pi-paperclip"  
+                                     title="#{core['button.archivo']}" 
+                                     action="#{backlogFaces.prepareArchivo(tarjeta)}"
+                                     update=":form, outputPanelTarjetaArchivo"
+                                     oncomplete="PF('overlayPanelTarjetaArchivo').show('#{component.clientId}')"
+                                     styleClass="rounded-button ui-button-danger ui-button-flat"/>
+                    
+                    <p:commandButton id="commandButtonEtiqueta" 
+                                     value="#{tarjeta.etiqueta.size()}"
+                                 rendered="#{backlogFaces.showProyectoForaneo() eq false and backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                     icon="pi pi-fw pi-hashtag"  
+                                     title="#{core['menuitem.etiqueta']}" 
+                                     action="#{backlogFaces.prepareEtiqueta(tarjeta)}"
+                                     update=":form, outputPanelTarjetaArchivo"
+                                     oncomplete="PF('overlayPanelTarjetaEtiqueta').show('#{component.clientId}')"
+                                     styleClass="rounded-button ui-button-danger ui-button-flat"/>
+                    
+                    <p:commandButton id="commandButtonColaborador"
+                                     value="#{tarjeta.userView.size()}"
+                                     styleClass="ui-button-flat"
+                                     update=":form, outputPanelTarjetaColaboradorDataTable"
+                                     rendered="#{backlogFaces.showProyectoForaneo() eq false}"
+                                     action="#{backlogFaces.prepareColaborador(tarjeta)}"
+                                     title="#{core['menuitem.colaborador']}"
+                                     oncomplete="PF('overlayPanelTarjetaColaboradorDataTable').show('#{component.clientId}')"
+                                     icon="pi pi-fw pi-user-minus"/>
+
+                </div>
+
+                <div class="flex align-items-center" >
+
+                    <div class="card barra-tarjeta-footer" style="width: 18rem;">
+
+
+
+
+                        <p:commandButton id="commandButtonPasarAlSprint" 
+                                         rendered="#{backlogFaces.isValidDateProject eq true and backlogFaces.haveSprintOpen eq true and backlogFaces.tienePrivilegiosParaTarjeta(tarjeta) eq true}"
+                                         update=":form"
+                                         value="#{backlogFaces.sprintSelected.sprint}"
+                                         action="#{backlogFaces.pasarAlSprint(tarjeta)}"
+                                         icon="pi pi-th-large"  title="#{msg['button.pasaralsprint']}"
+                                         styleClass="ui-button-outlined ui-rounded-button ui-button-success">
+                            <p:confirm type="popup" header="#{core['confirmdialog.header']}" message="#{msg['confirmdialog.pasarbacklogalsprint']}" icon="pi pi-info-circle"/>
+                        </p:commandButton>
+
+
+                        <p:commandButton id="commandButtonComentario" 
+                                         rendered="#{backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                         value="#{tarjeta.comentario.size()}"
+
+                                         icon="pi pi-comment" 
+                                         title="#{core['button.comment']}"
+                                         action="#{backlogFaces.prepareComentario(tarjeta)}"
+                                         oncomplete="PF('overlayPanelTarjetaComentario').show('#{component.clientId}')"
+                                         update=":form, outputPanelTarjetaComentario"
+                                         styleClass="rounded-button ui-button-warning ui-button-flat"/>
+
+                        <p:commandButton id="commandButtonTarea" 
+
+                                         rendered="#{backlogFaces.showProyectoForaneo() eq false and backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                         value="#{backlogFaces.tareasPendientes(tarjeta)}/#{tarjeta.tarea.size()}"
+                                         icon="pi pi-check-square"  title="#{core['button.tarea']}" 
+                                         styleClass="rounded-button ui-button-primary ui-button-flat"
+                                         action="#{backlogFaces.prepareTarea(tarjeta)}"
+                                         update=":form, outputPanelTarjetaTarea"
+                                         oncomplete="PF('overlayPanelTarjetaTarea').show('#{component.clientId}')"/>
+
+                        <p:commandButton id="commandButtonImpedimento" 
+                                         rendered="#{backlogFaces.showProyectoForaneo() eq false and backlogFaces.tienePrivilegiosParaTarjeta(tarjeta)}"
+                                         value="#{tarjeta.impedimento.size()}"
+                                         icon="pi pi-megaphone"  
+                                         styleClass="rounded-button ui-button-danger ui-button-flat"
+                                         title="#{core['button.impedimento']}" 
+                                         action="#{backlogFaces.prepareImpedimento(tarjeta)}"
+                                         update=":form, outputPanelTarjetaImpedimento"
+                                         oncomplete="PF('overlayPanelTarjetaImpedimento').show('#{component.clientId}')"
+                                         />
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+        <!--<p:separator style="width:300px;height:3px;  background-color: #121212;"/>-->
+
+
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="#{core['button.no']}" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            <p:commandButton value="#{core['button.yes']}" type="button" styleClass="ui-confirmdialog-yes ui-button-danger" />
+        </p:confirmDialog>
+
+
+
+
+
+
+
+    </composite:implementation>
+</html>
